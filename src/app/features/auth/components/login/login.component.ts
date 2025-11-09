@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,],
   templateUrl: './login.html',
   styleUrls: ['./login.scss']
 })
 export class LoginComponent {
+  @Output() navigateToSignup = new EventEmitter<void>();
+  
   email: string = '';
   password: string = '';
 
@@ -62,7 +64,15 @@ export class LoginComponent {
   }
 
   goToSignup() {
-    console.log('goToSignup called');
-    this.router.navigate(['/auth/signup']);
+    console.log('goToSignup called - navigating to /auth/signup');
+    
+    // Emit event for modal context
+    this.navigateToSignup.emit();
+    
+    // Also navigate for standalone context
+    this.router.navigate(['/auth/signup']).then(
+      () => console.log('Navigation to signup successful'),
+      (error) => console.error('Navigation to signup failed', error)
+    );
   }
 }

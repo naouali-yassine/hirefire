@@ -57,8 +57,7 @@ export class SignupComponent {
     }
     
     alert('Signup successful!');
-    
-    // Emit event to show CV setup modal
+  
     this.navigateToCvSetup.emit();
   }
 }

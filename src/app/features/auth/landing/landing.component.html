@@ -2,11 +2,9 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <path d="M20 5L35 15V25L20 35L5 25V15L20 5Z" fill="white"/>
-        <path d="M20 15L25 18V22L20 25L15 22V18L20 15Z" fill="#7C3AED"/>
-      </svg>
+      <img src="images/Asset4.svg" alt="HireFire" width="60" height="60">
     </div>
+    
     <div class="header-buttons">
       <button class="btn-login" (click)="openLogin()">LOG IN</button>
       <button class="btn-signup" (click)="openSignup()">SIGN UP</button>
@@ -49,19 +47,19 @@
   <!-- Features Section -->
   <section class="features">
     <div class="feature-card">
-      <div class="feature-icon">📄</div>
+      <img src="images/cv-parser.svg" alt="HireFire" width="85" height="80">
       <p>CV Parser</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">💡</div>
+      <img src="images/idea.svg" alt="HireFire" width="90" height="75">
       <p>Recommendation</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">👆</div>
+      <img src="images/papers.svg" alt="HireFire" width="80" height="70">
       <p>Swiping</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">📊</div>
+      <img src="images/dashboard.svg" alt="HireFire" width="110" height="75">
       <p>Dashboard</p>
     </div>
   </section>
@@ -71,7 +69,7 @@
 <div class="modal-overlay" *ngIf="showLoginModal" (click)="closeModals()">
   <div class="modal-container" (click)="$event.stopPropagation()">
     <button class="modal-close" (click)="closeModals()">✕</button>
-    <app-login></app-login>
+    <app-login (navigateToSignup)="openSignup()"></app-login>
   </div>
 </div>
 
