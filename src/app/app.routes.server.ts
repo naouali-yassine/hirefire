@@ -1,8 +1,14 @@
-import { RenderMode, ServerRoute } from '@angular/ssr';
+import { Routes } from '@angular/router';
 
-export const serverRoutes: ServerRoute[] = [
+export const routes: Routes = [
   {
-    path: '**',
-    renderMode: RenderMode.Prerender
-  }
+    path: 'auth',
+    children: [
+      { path: 'login', pathMatch: 'full' },
+      { path: 'signup', pathMatch: 'full' },
+      { path: 'cv-setup', pathMatch: 'full' }
+    ]
+  },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' }
 ];

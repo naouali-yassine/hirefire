@@ -1,0 +1,50 @@
+<div class="cv-setup-container">
+  <h2>Complete your profile</h2>
+
+  <form (ngSubmit)="onFinish()" #cvForm="ngForm" class="form" autocomplete="on">
+    <input
+      type="text"
+      placeholder="Profession / Job title"
+      [(ngModel)]="cv.profession"
+      name="profession"
+      required
+      autocomplete="organization-title"
+    />
+
+    <input
+      type="text"
+      placeholder="Skills (comma separated)"
+      [(ngModel)]="cv.skills"
+      name="skills"
+      required
+      autocomplete="off"
+    />
+
+    <input
+      type="text"
+      placeholder="Experience (e.g. 2 years at Company)"
+      [(ngModel)]="cv.experience"
+      name="experience"
+      required
+      autocomplete="organization"
+    />
+
+    <input
+      type="text"
+      placeholder="Education"
+      [(ngModel)]="cv.education"
+      name="education"
+      autocomplete="organization"
+    />
+
+    <input
+      type="text"
+      placeholder="Location"
+      [(ngModel)]="cv.location"
+      name="location"
+      autocomplete="address-level2"
+    />
+
+    <button type="submit">Finish Signup</button>
+  </form>
+</div>

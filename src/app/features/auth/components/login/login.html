@@ -1,1 +1,12 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+  <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required autocomplete="email"/>
+  <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required autocomplete="current-password"/>
+
+  <button type="submit">Login</button>
+  <button type="button" (click)="goToSignup()">Sign Up</button>
+</form>
+
+</div>

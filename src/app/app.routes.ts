@@ -1,23 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
+      import('./features/auth/auth.module').then(m => m.AuthModule)
   },
-  { path: '', redirectTo: 'auth', pathMatch: 'full' }
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/jobs/jobs-module').then(m => m.JobsModule)
+  },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' }
 ];
-
-
-@NgModule({
-    declarations: [],
-    imports: [
-        CommonModule,
-        RouterModule.forRoot(routes)
-    ],
-    exports: [RouterModule]
-})
-export class AppRoutingModule { }

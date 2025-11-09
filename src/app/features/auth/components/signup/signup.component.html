@@ -1,0 +1,52 @@
+<div class="signup-container">
+  <h2>Create your account</h2>
+
+  <form (ngSubmit)="onSignup()" #signupForm="ngForm" autocomplete="on">
+    <input
+      type="text"
+      placeholder="First name"
+      [(ngModel)]="user.firstName"
+      name="firstName"
+      required
+      autocomplete="given-name"
+    />
+
+    <input
+      type="text"
+      placeholder="Last name"
+      [(ngModel)]="user.lastName"
+      name="lastName"
+      required
+      autocomplete="family-name"
+    />
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="user.email"
+      name="email"
+      required
+      autocomplete="email"
+    />
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="user.password"
+      name="password"
+      required
+      autocomplete="new-password"
+    />
+
+    <input
+      type="password"
+      placeholder="Confirm password"
+      [(ngModel)]="user.confirmPassword"
+      name="confirmPassword"
+      required
+      autocomplete="new-password"
+    />
+
+    <button type="submit">Next: CV Setup</button>
+  </form>
+</div>
