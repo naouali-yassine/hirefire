@@ -1,0 +1,92 @@
+<div class="landing-page" [class.blurred]="showLoginModal || showSignupModal">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M20 5L35 15V25L20 35L5 25V15L20 5Z" fill="white"/>
+        <path d="M20 15L25 18V22L20 25L15 22V18L20 15Z" fill="#7C3AED"/>
+      </svg>
+    </div>
+    <div class="header-buttons">
+      <button class="btn-login" (click)="openLogin()">LOG IN</button>
+      <button class="btn-signup" (click)="openSignup()">SIGN UP</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">SWIPE YOUR WAY TO YOUR<br>DREAM JOB.</h1>
+      <p class="hero-description">
+        MATCH WITH PERFECT JOB OPPORTUNITIES BASED ON YOUR CV.<br>
+        SWIPE RIGHT TO APPLY. SWIPE LEFT TO<br>
+        PASS. IT'S THAT SIMPLE!
+      </p>
+      <button class="btn-get-started" (click)="getStarted()">GET STARTED</button>
+    </div>
+
+    <!-- Job Match Card Preview -->
+    <div class="job-card-preview">
+      <div class="job-card">
+        <h3>Job Matches</h3>
+        <p class="job-subtitle">Swipe To Find Your Perfect Role</p>
+        <div class="job-info">
+          <div class="job-badge">Frontend Developer</div>
+          <ul class="job-details">
+            <li>🏢 Startup With Exciting Vision</li>
+            <li>💰 $80k Base, TypeScript & Angular Tech Stack</li>
+            <li>📍 Remote, Portugal, Any Major City West US</li>
+          </ul>
+        </div>
+        <div class="job-actions">
+          <button class="action-btn reject">✕</button>
+          <button class="action-btn accept">✓</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <p>CV Parser</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💡</div>
+      <p>Recommendation</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👆</div>
+      <p>Swiping</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <p>Dashboard</p>
+    </div>
+  </section>
+</div>
+
+<!-- Login Modal -->
+<div class="modal-overlay" *ngIf="showLoginModal" (click)="closeModals()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModals()">✕</button>
+    <app-login></app-login>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal-overlay" *ngIf="showSignupModal" (click)="closeModals()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModals()">✕</button>
+    <app-signup (navigateToCvSetup)="openCvSetup()"></app-signup>
+  </div>
+</div>
+
+<!-- CV Setup Modal -->
+<div class="modal-overlay" *ngIf="showCvSetupModal" (click)="closeModals()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModals()">✕</button>
+    <app-cv-setup (navigateToLogin)="openLogin()"></app-cv-setup>
+  </div>
+</div>

@@ -1,12 +1,19 @@
 <div class="login-container">
-  <h2>Login</h2>
+  <div class="modal-logo">
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+      <path d="M30 7.5L52.5 22.5V37.5L30 52.5L7.5 37.5V22.5L30 7.5Z" fill="white"/>
+      <path d="M30 22.5L37.5 27V33L30 37.5L22.5 33V27L30 22.5Z" fill="#7C3AED"/>
+    </svg>
+  </div>
 
   <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-  <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required autocomplete="email"/>
-  <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required autocomplete="current-password"/>
+    <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required autocomplete="email" class="glass-input"/>
+    <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required autocomplete="current-password" class="glass-input"/>
 
-  <button type="submit">Login</button>
-  <button type="button" (click)="goToSignup()">Sign Up</button>
-</form>
-
+    <button type="submit" class="btn-submit">LOG IN</button>
+    
+    <p class="switch-text">
+      Don't have an account? <a (click)="goToSignup()">sign up?</a>
+    </p>
+  </form>
 </div>

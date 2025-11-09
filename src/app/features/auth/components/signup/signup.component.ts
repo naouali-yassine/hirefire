@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  @Output() navigateToCvSetup = new EventEmitter<void>();
+  
   user = {
     firstName: '',
     lastName: '',
@@ -56,7 +58,7 @@ export class SignupComponent {
     
     alert('Signup successful!');
     
-    // navigate to CV setup
-    this.router.navigate(['/auth/cv-setup']);
+    // Emit event to show CV setup modal
+    this.navigateToCvSetup.emit();
   }
 }

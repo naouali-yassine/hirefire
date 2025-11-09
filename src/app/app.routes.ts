@@ -11,6 +11,6 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/jobs/jobs-module').then(m => m.JobsModule)
   },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth/login' }
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth' }
 ];

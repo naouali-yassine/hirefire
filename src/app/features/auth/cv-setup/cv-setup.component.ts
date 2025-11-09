@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./cv-setup.component.scss']
 })
 export class CvSetupComponent implements OnInit {
+  @Output() navigateToLogin = new EventEmitter<void>();
+  
   cv = {
     profession: '',
     skills: '',
@@ -32,8 +34,7 @@ export class CvSetupComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       const signupData = localStorage.getItem('signupUser');
       if (!signupData) {
-        alert('No signup data found. Please complete signup first.');
-        this.router.navigate(['/auth/signup']);
+        console.warn('No signup data found in CV setup');
       } else {
         console.log('Signup data found:', signupData);
       }
@@ -53,7 +54,6 @@ export class CvSetupComponent implements OnInit {
     
     if (!signupUserData) {
       alert('User data not found. Please sign up first.');
-      this.router.navigate(['/auth/signup']);
       return;
     }
     
@@ -73,6 +73,7 @@ export class CvSetupComponent implements OnInit {
     // Clean up temporary signup data
     localStorage.removeItem('signupUser');
     
-    this.router.navigate(['/auth/login']);
+    // Emit event to show login modal
+    this.navigateToLogin.emit();
   }
 }

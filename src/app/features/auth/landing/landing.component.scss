@@ -1,0 +1,482 @@
+// Landing Page Container
+.landing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+  transition: filter 0.3s ease;
+
+  &.blurred {
+    filter: blur(8px);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+    animation: pulse 15s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10px, 10px) scale(1.1); }
+}
+
+// Header
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  position: relative;
+  z-index: 10;
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn-login,
+  .btn-signup {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+  }
+
+  .btn-login {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-signup {
+    background: white;
+    color: #7C3AED;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 3rem;
+  position: relative;
+  z-index: 10;
+  gap: 3rem;
+
+  .hero-content {
+    flex: 1;
+    max-width: 600px;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .btn-get-started {
+    padding: 1rem 3rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    letter-spacing: 1px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// Job Card Preview
+.job-card-preview {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+
+  .job-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 350px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: float 6s ease-in-out infinite;
+
+    h3 {
+      color: #333;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-subtitle {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .job-badge {
+      background: #7C3AED;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      display: inline-block;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .job-details {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+
+      li {
+        padding: 0.5rem 0;
+        color: #444;
+        font-size: 0.9rem;
+      }
+    }
+
+    .job-actions {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+
+      .action-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.reject {
+          background: #ff4757;
+          color: white;
+
+          &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.4);
+          }
+        }
+
+        &.accept {
+          background: #2ed573;
+          color: white;
+
+          &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(46, 213, 115, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+// Features Section
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 3rem 4rem;
+  position: relative;
+  z-index: 10;
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    min-width: 150px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// Modal Overlay
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Modal Container
+.modal-container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 3rem 2.5rem;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+
+  &.signup-modal {
+    max-width: 600px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+  }
+
+  .modal-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Modal Form
+.modal-form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    .glass-input {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      color: white;
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      &:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+
+      // Date input styling
+      &[type="date"] {
+        color-scheme: dark;
+      }
+    }
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #7C3AED;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+
+    &:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .switch-text {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+
+    a {
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: all 0.2s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 968px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .job-card-preview {
+      margin-top: 2rem;
+    }
+  }
+
+  .features {
+    flex-wrap: wrap;
+  }
+
+  .modal-container.signup-modal .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 1rem 1.5rem;
+
+    .btn-login,
+    .btn-signup {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .hero {
+    padding: 2rem 1.5rem;
+
+    .hero-title {
+      font-size: 2rem;
+    }
+  }
+
+  .features {
+    padding: 1rem 1.5rem 2rem;
+    gap: 1rem;
+
+    .feature-card {
+      padding: 1.5rem 1.5rem;
+      min-width: 120px;
+    }
+  }
+}
