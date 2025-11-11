@@ -14,8 +14,7 @@ export class SignupComponent {
   @Output() navigateToCvSetup = new EventEmitter<void>();
   
   user = {
-    firstName: '',
-    lastName: '',
+    userName: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -32,7 +31,7 @@ export class SignupComponent {
   onSignup() {
     console.log('onSignup called', this.user);
     
-    if (!this.user.firstName || !this.user.lastName || !this.user.email || !this.user.password) {
+    if (!this.user.userName || !this.user.email || !this.user.password) {
       alert('Please fill all required fields');
       return;
     }
@@ -46,8 +45,7 @@ export class SignupComponent {
     if (isPlatformBrowser(this.platformId)) {
       // Store user data in localStorage
       const userData = {
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
+        userName: this.user.userName,
         email: this.user.email,
         password: this.user.password
       };

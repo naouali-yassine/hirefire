@@ -4,21 +4,12 @@
   </div>
 
   <form (ngSubmit)="onSignup()" #signupForm="ngForm" autocomplete="on">
-    <input
-      type="text"
-      placeholder="First name"
-      [(ngModel)]="user.firstName"
-      name="firstName"
-      required
-      autocomplete="given-name"
-      class="glass-input"
-    />
 
     <input
       type="text"
-      placeholder="Last name"
-      [(ngModel)]="user.lastName"
-      name="lastName"
+      placeholder="Full name"
+      [(ngModel)]="user.userName"
+      name="userName"
       required
       autocomplete="family-name"
       class="glass-input"
