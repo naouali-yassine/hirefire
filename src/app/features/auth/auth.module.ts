@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { AUTH_ROUTES } from './auth.routes';
+import { SharedModule } from '../../shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
+/**
+ * AuthModule - Feature module for authentication
+ * Following MEAN Stack architecture:
+ * - Imports SharedModule to minimize repetitive imports
+ * - Uses AuthRoutingModule for feature-specific routing
+ * - Lazy loaded from AppModule
+ */
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(AUTH_ROUTES) // lazy loaded routes
+    SharedModule,
+    AuthRoutingModule
   ]
 })
 export class AuthModule {}

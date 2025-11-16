@@ -1,6 +1,10 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { App } from './app/app';
+import { Home } from './app/features/home/home';
 import { appConfig } from './app/app.config';
 
-bootstrapApplication(App, appConfig)
+/**
+ * Bootstrap HomeComponent as the root component
+ * Following MEAN Stack architecture pattern from support material
+ */
+bootstrapApplication(Home, appConfig)
   .catch((err) => console.error(err));

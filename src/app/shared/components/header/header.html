@@ -1,1 +1,12 @@
-<p>header works!</p>
+<header class="comp-header">
+    <div class="header-left">
+      <img src="/images/Asset4.svg" alt="HireFire" width="50" height="50" class="logo">
+      <h1>HireFire</h1>
+    </div>
+    <div class="btn-user-info">
+      <button (click)="'/dashboard/profile'" class="user-avatar"><img src="/images/profile.svg" alt="Profile" width="40" height="40"></button>
+      <button (click)="logout()" class="btn-logout">
+        <img src="/images/logout.svg" alt="Logout" width="50" height="50">
+      </button>
+    </div>
+  </header>

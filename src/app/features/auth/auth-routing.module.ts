@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Dashboard } from './dashboard/dashboard';
+import { LandingComponent } from './landing/landing.component';
+import { CvSetupComponent } from './cv-setup/cv-setup.component';
 
 /**
- * JobsRoutingModule - Routing module for Jobs feature
+ * AuthRoutingModule - Routing module for Auth feature
  * Following MEAN Stack architecture pattern
  * Each feature module should have its own routing module
  */
 const routes: Routes = [
-  { path: '', component: Dashboard },
-  { path: 'dashboard', component: Dashboard }
+  { path: '', component: LandingComponent },
+  { path: 'cv-setup', component: CvSetupComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class JobsRoutingModule { }
+export class AuthRoutingModule { }

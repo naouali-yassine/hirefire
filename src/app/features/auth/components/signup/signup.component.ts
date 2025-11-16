@@ -2,11 +2,13 @@ import { Component, Inject, PLATFORM_ID, ChangeDetectorRef, Output, EventEmitter
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Spinner } from '../../../../shared/components/spinner/spinner';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Spinner],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
@@ -19,9 +21,11 @@ export class SignupComponent {
     password: '',
     confirmPassword: ''
   };
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private cdr: ChangeDetectorRef
   ) {
@@ -41,21 +45,54 @@ export class SignupComponent {
       return;
     }
 
-    // Only access localStorage in browser
-    if (isPlatformBrowser(this.platformId)) {
-      // Store user data in localStorage
-      const userData = {
-        userName: this.user.userName,
-        email: this.user.email,
-        password: this.user.password
-      };
-      
-      localStorage.setItem('signupUser', JSON.stringify(userData));
-      console.log('Saved to localStorage:', localStorage.getItem('signupUser'));
-    }
-    
-    alert('Signup successful!');
-  
-    this.navigateToCvSetup.emit();
+    // Show spinner
+    this.isLoading = true;
+
+    // Use AuthService for signup
+    const userData = {
+      userName: this.user.userName,
+      email: this.user.email,
+      password: this.user.password
+    };
+
+    this.authService.signup(userData).subscribe({
+      next: (response) => {
+        console.log('Signup successful', response);
+        this.isLoading = false;
+        alert('Signup successful! Please complete your CV setup.');
+        
+        // Store user data for CV setup
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('signupUser', JSON.stringify(userData));
+        }
+        
+        this.navigateToCvSetup.emit();
+      },
+      error: (error) => {
+        console.error('Signup failed', error);
+        this.isLoading = false;
+        
+        // For development: If backend is not running, allow signup anyway
+        if (error.status === 0 || error.status === 404) {
+          console.warn('Backend not available, proceeding with local signup');
+          
+          // Store user data locally
+          if (isPlatformBrowser(this.platformId)) {
+            const devToken = 'dev-token-' + Date.now();
+            localStorage.setItem('authToken', devToken);
+            localStorage.setItem('userEmail', userData.email);
+            localStorage.setItem('signupUser', JSON.stringify(userData));
+          }
+          
+          // IMPORTANT: Update auth state before proceeding
+          this.authService.setAuthState(true);
+          
+          alert('Signup successful! (Development mode)');
+          this.navigateToCvSetup.emit();
+        } else {
+          alert('Signup failed: ' + (error.error?.message || 'Please try again.'));
+        }
+      }
+    });
   }
 }

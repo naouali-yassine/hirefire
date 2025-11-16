@@ -1,3 +1,6 @@
+<!-- Loading Spinner -->
+<app-spinner [show]="isLoading" [message]="'Creating your account...'"></app-spinner>
+
 <div class="signup-container">
   <div class="modal-logo">
     <img src="./images/Asset4.svg" alt="HireFire" width="60" height="60">
@@ -45,6 +48,6 @@
       class="glass-input"
     />
 
-    <button type="submit" class="btn-submit">NEXT</button>
+    <button type="submit" class="btn-submit" [disabled]="isLoading">NEXT</button>
   </form>
 </div>
